@@ -13,7 +13,10 @@ func main() {
 
 func startup() {
 	http.HandleFunc("/", welcome)
-	http.ListenAndServe("127.0.0.1:80", nil)
+	err := http.ListenAndServe("127.0.0.1:80", nil)
+	if err != nil {
+		fmt.Print(err)
+	}
 }
 
 func welcome(w http.ResponseWriter, r *http.Request) {
@@ -21,5 +24,5 @@ func welcome(w http.ResponseWriter, r *http.Request) {
 	//var ram int
 	ram := rand.Int()
 	fmt.Print(ram)
-	fmt.Print("ok")
+	fmt.Print(r.URL)
 }
